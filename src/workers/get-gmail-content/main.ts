@@ -9,6 +9,7 @@ import messageContentConstructor from './message-content-constructor'
 
 const message_list: gmail_v1.Schema$Message[] = []
 const message_content: MessageContent[] = []
+const taked_message_content: MessageContent[] = []
 const message_content_error = []
 
 const getGmailContentWorker = async (): Promise<MessageContent[]> => {
@@ -34,7 +35,7 @@ const getGmailContentWorker = async (): Promise<MessageContent[]> => {
     })
 
     page_token = nextPageToken
-  } while (page_token !== '14728852835494825608')
+  } while (page_token !== '16158290109363434573')
 
   for (const message_object of message_list) {
     if (credentials.expiry_date && credentials.expiry_date + 60000 < Date.now()) {
@@ -44,7 +45,11 @@ const getGmailContentWorker = async (): Promise<MessageContent[]> => {
     try {
       const message = await messageContentConstructor(credentials.access_token, message_object.id)
 
-      message_content.push(message)
+      if (!message.description) {
+        message_content.push(message)
+      } else {
+        taked_message_content.push(message)
+      }
     } catch (e) {
       message_content_error.push(e)
     }
@@ -53,4 +58,4 @@ const getGmailContentWorker = async (): Promise<MessageContent[]> => {
   return message_content
 }
 
-getGmailContentWorker().then(console.log)
+export default getGmailContentWorker
