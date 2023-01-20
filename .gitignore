@@ -7,5 +7,9 @@ jspm_packages
 .esbuild
 .env
 
+# Apagar depois
+src/json
+src/services/gcp/list-messages2.ts
+
 # Coverage directory used by tools like istanbul
 coverage

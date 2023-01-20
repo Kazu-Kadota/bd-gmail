@@ -22,4 +22,5 @@ export interface MessageContent {
     }
     attachment?: AttachmentContent[]
   }
+  description?: string
 }
