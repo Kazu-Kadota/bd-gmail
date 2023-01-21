@@ -26,7 +26,8 @@ const getGmailContentWorker = async (): Promise<MessageContent[]> => {
       continue
     }
 
-    const { messages, nextPageToken } = await listMessages(credentials.access_token, page_token)
+    // const { messages, nextPageToken } = await listMessages(credentials.access_token, page_token)
+    const { messages } = await listMessages(credentials.access_token, page_token)
 
     messages?.map((message_object): void => {
       message_list.push(message_object)
@@ -34,8 +35,9 @@ const getGmailContentWorker = async (): Promise<MessageContent[]> => {
       return undefined
     })
 
-    page_token = nextPageToken
-  } while (page_token !== '16158290109363434573')
+    // page_token = nextPageToken
+    page_token = undefined
+  } while (page_token !== undefined)
 
   for (const message_object of message_list) {
     if (credentials.expiry_date && credentials.expiry_date + 60000 < Date.now()) {

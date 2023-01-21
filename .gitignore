@@ -8,6 +8,7 @@ jspm_packages
 .env
 
 # Apagar depois
+src/assets/pdfs
 src/json
 src/services/gcp/list-messages2.ts
 
