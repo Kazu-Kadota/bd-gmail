@@ -3,6 +3,7 @@ import { MessageContent } from 'src/models/message'
 import getMessage from '../../services/gcp/get-message'
 
 import decodeMessageText from './decode-message-text'
+import getMessageAttachment from './get-message-attachments-adapter'
 import getMessageText from './get-message-text'
 import verifyMessageDate from './verify-message-date'
 import verifyMessageFrom from './verify-message-from'
@@ -34,6 +35,8 @@ const messageContentConstructor = async (
 
     const text_decoded = decodeMessageText(text_encoded)
 
+    const attachment = await getMessageAttachment(access_token, message)
+
     return {
       id: message.id as string,
       snippet: message.snippet as string,
@@ -46,6 +49,7 @@ const messageContentConstructor = async (
           base64: text_encoded,
           content: text_decoded,
         },
+        attachment,
       },
     }
   }

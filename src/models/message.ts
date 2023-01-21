@@ -3,7 +3,7 @@ export interface AttachmentContent {
   attachment_id?: string
   data?: {
     base64?: string
-    content?: string
+    content_id?: string
   }
 }
 
