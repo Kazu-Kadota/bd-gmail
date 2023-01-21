@@ -21,9 +21,7 @@
   "dependencies": {
     "@googleapis/gmail": "^1.1.0",
     "axios": "^1.2.3",
-    "dotenv": "^16.0.3",
-    "googleapis": "^110.0.0",
-    "googleapis-common": "^6.0.4"
+    "dotenv": "^16.0.3"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.18.6",
